@@ -1,38 +1,46 @@
 <?php
 
-$info = [
-	'Name' => 'Arnel',
-	'Age' => 27,
-	'Hair' => 'Black'
-];
+require('function.php');
 
-class Tasks{
-	protected $description;
+/**
+ * 
+ */
+class Tasks
+{
 
-	protected $completed = false;
-
+	public $description;
+	
+	public $completed = false;
+	
 	public function __construct($description)
 	{
 		$this->description = $description;
 	}
-	public function finishTask()
+
+	public function complete()
 	{
 		$this->completed = true;
 	}
 
+	public function isComplete()
+	{
+		return $this->completed;
+	}
+
 }
 
-$newTask = [
-	new Tasks('practice php'),
-	new Tasks('study'),
-	new Tasks('sleep'),
-	new Tasks('clear data'),
+$tasks = [
+	new Tasks('review classes 101'),
+	new Tasks('review laracasts'),
+	new Tasks('mysql'),
+	new Tasks('upload to github'),
+	new Tasks('meeting with structural'),
 ];
 
-$newTask[3]->finishTask();
+$tasks[2]->complete();
+$tasks[3]->complete();
 
-var_dump($newTask);
 
-die();
+// dd($tasks);
 
 require 'index.view.php';
