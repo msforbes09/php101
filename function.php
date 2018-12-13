@@ -1,8 +1,12 @@
 <?php
 
-function dd($data)
+
+
+function fetchAllTasks($pdo)
 {
-	echo '<pre>';
-	die(var_dump($data));
-	echo '</pre>';
+	$stmt = $pdo->prepare('select * from todos;');
+
+	$stmt->execute();
+
+	return $stmt->fetchAll(PDO::FETCH_CLASS, 'Task');
 }
