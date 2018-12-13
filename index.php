@@ -5,7 +5,7 @@ $info = [
 	'Age' => 27,
 	'Hair' => 'Black'
 ];
-var_dump($info);
+var_dump($_SERVER);
 
 die();
 
