@@ -1,12 +1,9 @@
 <?php
+die(var_dump($_SERVER));
 
-require 'function.php';
+$database = require 'bootstrap.php';
 
-require 'database/Connection.php';
-
-require 'Task.php';
-
-$tasks = fetchAllTasks(Connection::make());
+$tasks = $database->selectAll('todos');
 
 require 'index.view.php';
  
