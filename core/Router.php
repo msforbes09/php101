@@ -2,7 +2,10 @@
 
 class Router
 {
-	protected $routes = [];
+	protected $routes = [
+		'GET' => [], 
+		'POST' => [], 
+	];
 
 	public static function load($file)
 	{
@@ -13,16 +16,22 @@ class Router
 		return $router;
 	}
 
-	public function define($routes)
+	public function get($uri, $controller)
 	{
-		$this->routes = $routes;
+		$this->routes["GET"][$uri] = $controller;
 	}
 
-	public function direct($uri)
+	public function post($uri, $controller)
 	{
-		if(array_key_exists($uri, $this->routes))
+		$this->routes["POST"][$uri] = $controller;
+	}
+
+	public function direct($uri, $method)
+	{	
+		// die(var_dump($method)); 
+		if(array_key_exists($uri, $this->routes[$method]))
 		{
-			return $this->routes[$uri];
+			return $this->routes[$method][$uri];
 		}
 
 		throw new Exception("Request Page Not Found");
