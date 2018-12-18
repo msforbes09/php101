@@ -30,8 +30,17 @@ class Router
 	{	
 		// die(var_dump($method)); 
 		if(array_key_exists($uri, $this->routes[$method]))
-		{
-			return $this->routes[$method][$uri];
+		{	
+			$controllerName = explode('@', $this->routes[$method][$uri])[0];
+			$method = explode('@', $this->routes[$method][$uri])[1];
+
+			$controller = new $controllerName;
+
+			if(! method_exists($controller, $method)){
+				throw new Exception("{$method} not found in {$controllerName}.");
+			}
+
+			return $controller->$method();
 		}
 
 		throw new Exception("Request Page Not Found");

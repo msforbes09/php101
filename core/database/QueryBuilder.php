@@ -22,8 +22,13 @@ class QueryBuilder
 			':' . implode(array_keys($data), ', :'),
 		);
 
-		$stmt = $this->pdo->prepare($sql);
+		try {
+			$stmt = $this->pdo->prepare($sql);
 
-		$stmt->execute($data);
+			$stmt->execute($data);
+		} catch (PDOException $e) {
+			die('Sorry something went wrong.');
+		}
+
 	}
 } 
