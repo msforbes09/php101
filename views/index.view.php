@@ -4,16 +4,19 @@
 
 	<ul>
 		<?php foreach ($users as $user) :?>
-			<li><?= $user->name ?></li>
+			<li>
+				<strong>Name:</strong> <?= $user->name ?>
+				<strong>Age:</strong> <?= $user->age ?>
+			</li>
 		<?php endforeach?>
 	</ul>
 	
-	<form method="post" action="names">
-		<p>
-			<input type="text" name="age" placeholder="age" required>
-		</p>
+	<form method="post" action="users">
 		<p>
 			<input type="text" name="name" placeholder="name" required>
+		</p>
+		<p>
+			<input type="number" name="age" placeholder="age" required>
 		</p>
 		<p>
 			<button type="submit">Save</button>

@@ -15,6 +15,15 @@ class QueryBuilder
 	}
 	public function store($table, $data)
 	{
-		die(var_dump($data));	
+		$sql = sprintf(
+			'insert into %s (%s) values (%s)',
+			$table,
+			implode(array_keys($data), ', '),
+			':' . implode(array_keys($data), ', :'),
+		);
+
+		$stmt = $this->pdo->prepare($sql);
+
+		$stmt->execute($data);
 	}
 } 
