@@ -9,8 +9,15 @@
 	</ul>
 	
 	<form method="post" action="names">
-		<input type="text" name="name" placeholder="name" required>
-		<button type="submit">Save</button>
+		<p>
+			<input type="text" name="age" placeholder="age" required>
+		</p>
+		<p>
+			<input type="text" name="name" placeholder="name" required>
+		</p>
+		<p>
+			<button type="submit">Save</button>
+		</p>
 	</form>
 
 <?php require('partials/footer.php'); ?>	

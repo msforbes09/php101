@@ -1,3 +1,3 @@
 <?php
 
-var_dump($app['database']);
+var_dump($_REQUEST);
