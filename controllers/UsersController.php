@@ -6,9 +6,7 @@ class UsersController
 	{
 		$users = App::get('database')->selectAll('users');
 
-		return view('users', [
-			'users' => $users
-		]);
+		return view('users', compact('users'));
 	}
 	public function store()
 	{

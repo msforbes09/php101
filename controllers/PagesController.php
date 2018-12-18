@@ -10,8 +10,9 @@ class PagesController
 	}
 	public function about()
 	{
+		$name = "Laracasts";
 
-		return view('about');
+		return view('about', compact('name'));
 
 	}
 	public function contact()

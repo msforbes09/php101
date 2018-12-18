@@ -26,23 +26,26 @@ class Router
 		$this->routes["POST"][$uri] = $controller;
 	}
 
-	public function direct($uri, $method)
+	public function direct($uri, $requestType)
 	{	
-		// die(var_dump($method)); 
-		if(array_key_exists($uri, $this->routes[$method]))
+		// die(var_dump($requestType)); 
+		if(array_key_exists($uri, $this->routes[$requestType]))
 		{	
-			$controllerName = explode('@', $this->routes[$method][$uri])[0];
-			$method = explode('@', $this->routes[$method][$uri])[1];
-
-			$controller = new $controllerName;
-
-			if(! method_exists($controller, $method)){
-				throw new Exception("{$method} not found in {$controllerName}.");
-			}
-
-			return $controller->$method();
+			return $this->callAction(
+				...explode('@', $this->routes[$requestType][$uri])
+			);
 		}
 
 		throw new Exception("Request Page Not Found");
+	}
+	protected function callAction($controllerName, $action)
+	{
+		$controller = new $controllerName;
+
+		if(! method_exists($controller, $action)){
+			throw new Exception("{$action} not found in {$controllerName}.");
+		}
+
+		return $controller->$action	();
 	}
 }

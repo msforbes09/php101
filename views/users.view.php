@@ -1,7 +1,8 @@
 <?php require('partials/header.php'); ?>	
 
-	<h1>Submit your Name</h1>
 
+	<h1>Users</h1>
+	
 	<ul>
 		<?php foreach ($users as $user) :?>
 			<li>
@@ -10,6 +11,8 @@
 			</li>
 		<?php endforeach?>
 	</ul>
+	
+	<h1>Submit your Name</h1>
 	
 	<form method="post" action="users">
 		<p>
