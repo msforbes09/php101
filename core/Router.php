@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 class Router
 {
 	protected $routes = [
@@ -11,7 +13,7 @@ class Router
 	{
 		$router = new static;
 
-		require $file;
+		require "app/{$file}";
 
 		return $router;
 	}
@@ -40,7 +42,9 @@ class Router
 	}
 	protected function callAction($controllerName, $action)
 	{
-		$controller = new $controllerName;
+		$controller = "App\\Controllers\\{$controllerName}";
+
+		$controller = new $controller;
 
 		if(! method_exists($controller, $action)){
 			throw new Exception("{$action} not found in {$controllerName}.");
