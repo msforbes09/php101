@@ -13,7 +13,7 @@ class Router
 	{
 		$router = new static;
 
-		require "app/{$file}";
+		require $file;
 
 		return $router;
 	}
